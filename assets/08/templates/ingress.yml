@@ -4,14 +4,14 @@ metadata:
   name: ingress-helm
 spec:
   rules:
-  - host: carlos63.kubelabs.tk
+  - host: {{ .Values.ingressHost }}.kubelabs.tk
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: svc-helm-app
+            name: {{ .Values.serviceName }}
             port:
               number: 80
 

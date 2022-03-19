@@ -1,6 +1,7 @@
-# # Estas son los valores por defecto que se pasaran al Template
+# Estas son los valores por defecto que se pasaran al Template
 serviceName: svc-helm-app
-# replicaCount: 1
+ingressHost: xxxxxxxx
+replicaCount: 1
 
 # image:
 #   repository: httpd

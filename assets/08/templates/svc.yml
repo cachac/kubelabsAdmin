@@ -1,8 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  # name: svc-helm-app
-	  name: {{ .Values.serviceName }}
+  name: {{ .Values.serviceName }}
 spec:
   type: ClusterIP
   selector:
@@ -11,5 +10,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-			# targetPort: {{ .Values.targetPort }}
 
