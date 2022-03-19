@@ -1,29 +1,5 @@
 # Estas son los valores por defecto que se pasaran al Template
 serviceName: svc-helm-app
 ingressHost: xxxxxxxx
-replicaCount: 1
+replicas: 1
 
-# image:
-#   repository: httpd
-#   pullPolicy: IfNotPresent
-#   tag: 2.4.51
-
-# nameOverride: webapp
-# fullnameOverride: my-webapp
-
-# # serviceAccount:
-# #   # Specifies whether a service account should be created
-# #   create: true
-# #   # Annotations to add to the service account
-# #   annotations: {}
-# #   # The name of the service account to use.
-# #   # If not set and create is true, a name is generated using the fullname template
-# #   name: my-first-chart-demo
-# #   labels:
-# #         app: web_application
-# #         tier: frontend
-
-# service:
-#   type: NodePort
-#   port: 80
-#   nodePort: 30080
