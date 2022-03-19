@@ -1,5 +1,4 @@
 # Estas son los valores por defecto que se pasaran al Template
-serviceName: svc-helm-app
 ingressHost: xxxxxxxx
 replicas: 1
 

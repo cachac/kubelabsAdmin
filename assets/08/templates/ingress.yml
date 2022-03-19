@@ -11,7 +11,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.serviceName }}
+            name: {{ .Release.Name }}-svc
             port:
               number: 80
 

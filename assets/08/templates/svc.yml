@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ .Values.serviceName }}
+  name: {{ .Release.Name }}-svc
 spec:
   type: ClusterIP
   selector:
