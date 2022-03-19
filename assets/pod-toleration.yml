@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pod-especial
+  name: pod-especial
+spec:
+  containers:
+  - image: nginx
+    name: pod-especial
+    resources: {}
+  tolerations:
+  - key: tipo
+    operator: "Equal"
+    value: datos
+  restartPolicy: Never
+
