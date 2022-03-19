@@ -1,0 +1,7 @@
+# Descripción general del Chart
+apiVersion: v2
+appVersion: kube-latest
+description: Kubelabs Apache Chart Demo
+name: webapp
+type: application
+version: 1.1.0

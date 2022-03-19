@@ -1,14 +1,15 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: svc-helm-app
+  # name: svc-helm-app
+	  name: {{ .Values.serviceName }}
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: pod-helm-app
   ports:
     - protocol: TCP
-      name: main
       port: 80
       targetPort: 8080
-			nodePort: 30080
+			# targetPort: {{ .Values.targetPort }}
+
