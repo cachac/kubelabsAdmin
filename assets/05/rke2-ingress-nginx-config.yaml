@@ -1,0 +1,66 @@
+# /var/lib/rancher/rke2/server/manifests/rke2-ingress-nginx-config.yaml
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-ingress-nginx
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    controller:
+      metrics:
+        service:
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/port: "10254"
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-ingress-nginx
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    controller:
+      metrics:
+        enabled: true
+        serviceMonitor:
+          additionalLabels:
+            app: "kubelabs"
+          enabled: true
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-ingress-nginx
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    controller:
+      admissionWebhooks:
+        enabled: true
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - ingress-nginx
+            topologyKey: kubernetes.io/hostname
+      config:
+        compute-full-forwarded-for: "true"
+        proxy-body-size: "0"
+        use-forwarded-headers: "true"
+      ingressClass: nginx
+      ingressClassResource:
+        default: false
+        enabled: true
+      metrics:
+        enabled: true
+        serviceMonitor:
+          additionalLabels:
+            lesson: "082"
+          enabled: true
+      replicaCount: 1
+---
