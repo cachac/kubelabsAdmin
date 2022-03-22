@@ -1,4 +1,9 @@
-# Instalar y configurar Prometheus
+# Instalar y configurar Prometheus - Básico
+
+
+
+
+# Version Prometheus Operator
 
 ```vim
 # En caso de no tener Docker instalado:
