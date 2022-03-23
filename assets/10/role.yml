@@ -1,0 +1,10 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: prod-apps
+  name: developer
+rules:
+- apiGroups: ["", "extensions", "apps"] # Kube-API access
+  resources: ["pods"]
+  verbs: ["list", "create", "delete"] # acciones, No permite eliminar
+# get - list - watch - create - update - patch - delete

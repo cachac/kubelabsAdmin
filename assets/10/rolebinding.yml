@@ -1,0 +1,13 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev-users
+  namespace: prod-apps
+subjects:
+- kind: User
+  name: carlos # User name
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: developer # Role name
+  apiGroup: rbac.authorization.k8s.io
