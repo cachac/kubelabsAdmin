@@ -18,7 +18,7 @@ spec:
       labels:
         name: web-dashboard
     spec:
-      serviceAccountName: dashboard-sa
+      serviceAccountName: dashboard-sa # Token de comunicación con Kube-API
       containers:
       - image: gcr.io/kodekloud/customimage/my-kubernetes-dashboard
         imagePullPolicy: Always
