@@ -1,4 +1,9 @@
 # Estas son los valores por defecto que se pasaran al Template
 ingressHost: xxxxxxxx
 replicas: 1
+deployLabel: enabled
 
+env:
+  DEBUG: 1
+  PORT: 8080
+  EXTERNAL_URL: https://mysite.com

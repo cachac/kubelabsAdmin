@@ -3,6 +3,12 @@ kind: Deployment
 
 metadata:
   name: {{ .Release.Name }}-deploy
+  labels:
+	  {{- if eq .Values.deployLabel "enabled" }}
+    useMetrics: "true"
+    {{- else }}
+    useMetrics: "false"
+    {{- end }}
 
 spec:
   replicas: {{ .Values.replicas }}
@@ -29,3 +35,8 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "250m"
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
