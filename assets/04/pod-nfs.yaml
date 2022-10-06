@@ -1,0 +1,36 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nfs-pod
+  labels:
+    app: nfs-pod
+spec:
+  containers:
+    - name: website
+      image: nginx
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: static-vol
+          mountPath: /usr/share/nginx/html/
+        - name: web-claim-nfs
+          mountPath: /var/log/nginx
+  volumes:
+    - name: static-vol
+      hostPath:
+        path: /home/kube/kubelabsAdmin/assets/04
+    - name: web-claim-nfs
+      persistentVolumeClaim:
+        claimName: azure-managed-nfs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nfs-pod-pv-svc
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80
+      port: 80
+  selector:
+    app: nfs-pod

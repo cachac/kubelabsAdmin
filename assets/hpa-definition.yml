@@ -12,6 +12,8 @@ spec:
       labels:
         run: php-apache
     spec:
+      terminationGracePeriodSeconds: 10  # segundos de tiempo para terminar procesos internos del contenedor cuando falla un "Probe"
+
       containers:
       - name: php-apache
         image: k8s.gcr.io/hpa-example
@@ -42,6 +44,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: php-apache
 spec:
+
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
@@ -49,12 +52,12 @@ spec:
   minReplicas: 1
   maxReplicas: 10
   metrics:
-    - type: Resource
+    - type: Resource # Pods - Object
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 30
+          averageUtilization: 25
     - type: Resource
       resource:
         name: memory
@@ -63,9 +66,11 @@ spec:
           averageUtilization: 30
   # behavior:
   #   scaleDown:
+  #     stabilizationWindowSeconds: 30  # para eventos fluctuantes
+
   #     policies:
   #     - type: Pods
-  #       value: 0
+  #       value: 2 # decrementa 2 replicas en 60 segundos
   #       periodSeconds: 60 # tiempo de cumplimiento de metricas
   #     - type: Percent # decrementa 10% en 60 segundos
   #       value: 10
