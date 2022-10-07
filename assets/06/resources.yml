@@ -1,38 +1,45 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: podinfo
+  name: kubelabs
 spec:
   selector:
     matchLabels:
-      app: podinfo
+      app: kubelabs
   template:
     metadata:
       labels:
-        app: podinfo
+        app: kubelabs
     spec:
       containers:
-      - name: podinfo
-        image: stefanprodan/podinfo
+      - name: kubelabs
+        image: cachac/kube-labs
         ports:
-        - containerPort: 9898
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: podinfo
+  name: kubelabs
 spec:
   ports:
     - port: 80
-      targetPort: 9898
+      targetPort: 8080
   selector:
-    app: podinfo
+    app: kubelabs
   type: ClusterIP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: podinfo
+  name: kubelabs
 spec:
   ingressClassName: nginx
   rules:
@@ -41,7 +48,7 @@ spec:
         paths:
           - backend:
               service:
-                name: podinfo
+                name: kubelabs
                 port:
                   number: 80
             path: /
