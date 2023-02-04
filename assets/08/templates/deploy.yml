@@ -12,7 +12,7 @@ metadata:
 
 spec:
   replicas: {{ .Values.replicas }}
-  selector:
+	selector:
     matchLabels:
       app: pod-helm-app
 
